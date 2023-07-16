@@ -21,6 +21,10 @@ subprojects {
     dependencies {
         implementation "org.springframework:spring-context:$springVersion"
 
+        compileOnly 'org.projectlombok:lombok:1.18.26'
+        annotationProcessor 'org.projectlombok:lombok:1.18.26'
+        implementation group: 'org.projectlombok', name: 'lombok-mapstruct-binding', version: '0.2.0'
+
         testImplementation "org.springframework:spring-test:$springVersion"
         testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
@@ -28,6 +32,7 @@ subprojects {
 
         annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
         implementation "org.mapstruct:mapstruct:$mapstructVersion"
+
     }
     test {
         useJUnitPlatform()
