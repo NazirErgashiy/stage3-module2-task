@@ -10,14 +10,24 @@ import com.mjc.school.service.exceptions.NewsNotFoundRuntimeException;
 import com.mjc.school.service.implementation.validators.NewsValidator;
 import com.mjc.school.service.mapper.NewsMapperImpl;
 import com.mjc.school.service.requests.NewsRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class NewsService implements BaseService<NewsRequest, NewsDto, Long> {
-    private final NewsRepository REPOSITORY = new NewsRepository();
+
+    @Autowired
+    public NewsService(NewsRepository newsRepository, NewsValidator newsValidator) {
+        REPOSITORY = newsRepository;
+        VALIDATOR = newsValidator;
+    }
+
+    private NewsRepository REPOSITORY;
     private final NewsMapperImpl MAPPER = new NewsMapperImpl();
-    private final NewsValidator VALIDATOR = new NewsValidator();
+    private NewsValidator VALIDATOR;
 
     @Override
     public List<NewsDto> readAll() {
@@ -54,10 +64,7 @@ public class NewsService implements BaseService<NewsRequest, NewsDto, Long> {
         if (!REPOSITORY.existById(request.getId())) {
             throw new NewsNotFoundRuntimeException("News with id [" + request.getId() + "] not found");
         }
-        AuthorRepository authorRepository = new AuthorRepository();
-        if (!authorRepository.existById(request.getAuthorId())) {
-            throw new AuthorNotFoundRuntimeException("Author with id [" + request.getAuthorId() + "] not found");
-        }
+
         if (VALIDATOR.validate(request)) {
             NewsDto dto = new NewsDto();
             dto.setId(request.getId());

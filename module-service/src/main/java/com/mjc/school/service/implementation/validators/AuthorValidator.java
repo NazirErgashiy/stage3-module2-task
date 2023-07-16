@@ -4,7 +4,9 @@ import com.mjc.school.repository.implementation.dao.AuthorRepository;
 import com.mjc.school.service.Validator;
 import com.mjc.school.service.exceptions.LengthRuntimeException;
 import com.mjc.school.service.requests.AuthorRequest;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AuthorValidator implements Validator<AuthorRequest> {
 
     private final int NAME_MIN_LENGTH = 3;

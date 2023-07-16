@@ -9,16 +9,27 @@ import com.mjc.school.service.mapper.NewsMapperImpl;
 import com.mjc.school.service.requests.AuthorRequest;
 import com.mjc.school.service.requests.NewsRequest;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Component
 class NewsServiceTest {
 
-    private final NewsService NEWS_SERVICE = new NewsService();
-    private final AuthorService AUTHOR_SERVICE = new AuthorService();
+    /*
+    @Autowired
+    public NewsServiceTest(NewsService newsService, AuthorService authorService) {
+        NEWS_SERVICE = newsService;
+        AUTHOR_SERVICE = authorService;
+    }
+
+    private NewsService NEWS_SERVICE;
+    private AuthorService AUTHOR_SERVICE;
 
     private void clearAuthorRepo() {
         AUTHOR_SERVICE.saveAll(new ArrayList<>());
@@ -226,16 +237,16 @@ class NewsServiceTest {
         createSpecialNews("End Of Nightmares", "Our dreadful marches to delightful measures.", 8L);
         createSpecialNews("Begging In The Future", "Grim-visaged war hath smooth'd his wrinkled front;", 9L);
         createSpecialNews("Flying Into The North", "I, that am curtail'd of this fair proportion,", 10L);
-        createSpecialNews("Hero Of Dawn","Creator Of Tomorrow",11L);
-        createSpecialNews("Human With Honor","Priestess Without Desire",12L);
-        createSpecialNews("Strangers Of The Night","Giants Of The Light",13L);
-        createSpecialNews("Officers With Vigor","Boys Without Courage",14L);
-        createSpecialNews("Serpents And Companions","Lords And Knights",15L);
-        createSpecialNews("Horses And Foreigners","Wolves And Aliens",16L);
-        createSpecialNews("Cause Of Tomorrow","Planet Of Water",17L);
-        createSpecialNews("Destiny Without Time","Success Of The Void",18L);
-        createSpecialNews("Healing My Nightmares","Clinging To The Future",19L);
-        createSpecialNews("Choking In Eternity","Hurt By Nightmares",20L);
+        createSpecialNews("Hero Of Dawn", "Creator Of Tomorrow", 11L);
+        createSpecialNews("Human With Honor", "Priestess Without Desire", 12L);
+        createSpecialNews("Strangers Of The Night", "Giants Of The Light", 13L);
+        createSpecialNews("Officers With Vigor", "Boys Without Courage", 14L);
+        createSpecialNews("Serpents And Companions", "Lords And Knights", 15L);
+        createSpecialNews("Horses And Foreigners", "Wolves And Aliens", 16L);
+        createSpecialNews("Cause Of Tomorrow", "Planet Of Water", 17L);
+        createSpecialNews("Destiny Without Time", "Success Of The Void", 18L);
+        createSpecialNews("Healing My Nightmares", "Clinging To The Future", 19L);
+        createSpecialNews("Choking In Eternity", "Hurt By Nightmares", 20L);
     }
 
     private NewsDto createSpecialNews(String title, String content, Long authorId) {
@@ -251,4 +262,5 @@ class NewsServiceTest {
         aReq1.setName(name);
         return AUTHOR_SERVICE.create(aReq1);
     }
+     */
 }

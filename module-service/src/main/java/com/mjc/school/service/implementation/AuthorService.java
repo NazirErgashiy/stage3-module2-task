@@ -8,15 +8,26 @@ import com.mjc.school.service.exceptions.AuthorNotFoundRuntimeException;
 import com.mjc.school.service.implementation.validators.AuthorValidator;
 import com.mjc.school.service.mapper.AuthorMapperImpl;
 import com.mjc.school.service.requests.AuthorRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class AuthorService implements BaseService<AuthorRequest, AuthorDto, Long> {
-    private final AuthorRepository REPOSITORY = new AuthorRepository();
+
+    @Autowired
+    public AuthorService(AuthorRepository REPOSITORY, NewsService newsService, AuthorValidator authorValidator) {
+        this.REPOSITORY = REPOSITORY;
+        this.NEWS_SERVICE = newsService;
+        this.VALIDATOR = authorValidator;
+    }
+
+    private AuthorRepository REPOSITORY;
     private final AuthorMapperImpl MAPPER = new AuthorMapperImpl();
-    private final AuthorValidator VALIDATOR = new AuthorValidator();
-    private final NewsService NEWS_SERVICE = new NewsService();
+    private AuthorValidator VALIDATOR;
+    private NewsService NEWS_SERVICE;
 
     @Override
     public List<AuthorDto> readAll() {
@@ -29,8 +40,8 @@ public class AuthorService implements BaseService<AuthorRequest, AuthorDto, Long
 
     @Override
     public AuthorDto readById(Long id) {
-        if(!REPOSITORY.existById(id)){
-            throw new AuthorNotFoundRuntimeException("Author with id ["+id+"] not found");
+        if (!REPOSITORY.existById(id)) {
+            throw new AuthorNotFoundRuntimeException("Author with id [" + id + "] not found");
         }
         return MAPPER.modelToDto(REPOSITORY.readById(id).get());
     }

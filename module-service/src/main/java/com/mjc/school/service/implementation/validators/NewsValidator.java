@@ -10,16 +10,24 @@ import com.mjc.school.service.exceptions.LengthRuntimeException;
 import com.mjc.school.service.implementation.AuthorService;
 import com.mjc.school.service.implementation.NewsService;
 import com.mjc.school.service.requests.NewsRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class NewsValidator implements Validator<NewsRequest> {
 
     private final int TITLE_MIN_LENGTH = 5;
     private final int TITLE_MAX_LENGTH = 30;
     private final int CONTENT_MIN_LENGTH = 5;
     private final int CONTENT_MAX_LENGTH = 255;
-    private final AuthorRepository AUTHOR_REPOSITORY = new AuthorRepository();
+    private AuthorRepository AUTHOR_REPOSITORY;
+
+    @Autowired
+    public NewsValidator(AuthorRepository authorRepository) {
+        this.AUTHOR_REPOSITORY = authorRepository;
+    }
 
     @Override
     public Boolean validate(NewsRequest request) {

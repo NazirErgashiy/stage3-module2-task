@@ -5,13 +5,21 @@ import com.mjc.school.controller.BaseController;
 import com.mjc.school.service.dto.AuthorDto;
 import com.mjc.school.service.implementation.AuthorService;
 import com.mjc.school.service.requests.AuthorRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class AuthorController implements BaseController<AuthorControllerRequest, AuthorDto, Long> {
-    private final AuthorService SERVICE = new AuthorService();
+
+
+    @Autowired
+    public AuthorController(AuthorService authorServiceBean) {
+        SERVICE = authorServiceBean;
+    }
+
+    private AuthorService SERVICE;
 
     @Override
     public List<AuthorDto> readAll() {
@@ -25,7 +33,7 @@ public class AuthorController implements BaseController<AuthorControllerRequest,
 
     @Override
     public AuthorDto create(AuthorControllerRequest createRequest) {
-        AuthorRequest request=new AuthorRequest();
+        AuthorRequest request = new AuthorRequest();
         request.setName(createRequest.getName());
         request.setId(createRequest.getId());
 
@@ -34,7 +42,7 @@ public class AuthorController implements BaseController<AuthorControllerRequest,
 
     @Override
     public AuthorDto update(AuthorControllerRequest updateRequest) {
-        AuthorRequest request=new AuthorRequest();
+        AuthorRequest request = new AuthorRequest();
         request.setName(updateRequest.getName());
         request.setId(updateRequest.getId());
 
@@ -46,7 +54,7 @@ public class AuthorController implements BaseController<AuthorControllerRequest,
         return SERVICE.deleteById(id);
     }
 
-    public void createTestDataBase(){
+    public void createTestDataBase() {
         SERVICE.createTestDB();
     }
 }

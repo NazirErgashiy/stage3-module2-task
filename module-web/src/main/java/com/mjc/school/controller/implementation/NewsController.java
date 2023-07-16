@@ -5,14 +5,20 @@ import com.mjc.school.controller.NewsControllerRequest;
 import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.implementation.NewsService;
 import com.mjc.school.service.requests.NewsRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class NewsController implements BaseController<NewsControllerRequest, NewsDto, Long> {
-    private final NewsService SERVICE = new NewsService();
 
+    @Autowired
+    public NewsController(NewsService SERVICE) {
+        this.SERVICE = SERVICE;
+    }
+
+    private NewsService SERVICE;
     @Override
     public List<NewsDto> readAll() {
         return SERVICE.readAll();

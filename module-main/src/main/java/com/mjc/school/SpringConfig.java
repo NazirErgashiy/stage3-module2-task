@@ -1,22 +1,12 @@
 package com.mjc.school;
 
-import com.mjc.school.controller.implementation.AuthorController;
-import com.mjc.school.controller.implementation.NewsController;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("com.mjc.school.controller")
-@ComponentScan("com.mjc.school")
+@ComponentScan("com.mjc.school.controller.implementation")
+@ComponentScan("com.mjc.school.repository.implementation.dao")
+@ComponentScan("com.mjc.school.repository.implementation")
+@ComponentScan("com.mjc.school.service.implementation")
 public class SpringConfig {
-    @Bean
-    public AuthorController authorControllerBean() {
-        return new AuthorController();
-    }
-
-    @Bean
-    public NewsController newsControllerBean() {
-        return new NewsController();
-    }
 }

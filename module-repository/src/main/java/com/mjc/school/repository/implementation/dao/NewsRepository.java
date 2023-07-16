@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.implementation.model.AuthorModel;
 import com.mjc.school.repository.implementation.model.NewsModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -13,9 +15,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+@Component
 public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();//Jackson
+    private static ObjectMapper OBJECT_MAPPER =new ObjectMapper();
 
     static {
         final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");

@@ -15,8 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-        NewsController newsController = context.getBean("newsControllerBean", NewsController.class);
-        AuthorController authorController = context.getBean("authorControllerBean", AuthorController.class);
+        NewsController newsController = context.getBean("newsController", NewsController.class);
+        AuthorController authorController = context.getBean("authorController", AuthorController.class);
         context.close();
 
         authorController.createTestDataBase();
