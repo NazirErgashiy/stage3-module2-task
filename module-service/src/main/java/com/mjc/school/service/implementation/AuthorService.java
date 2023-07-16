@@ -70,4 +70,39 @@ public class AuthorService implements BaseService<AuthorRequest, AuthorDto, Long
 
         return authorModels.size() + 1;
     }
+
+    private void clearAuthorRepo() {
+        saveAll(new ArrayList<>());
+    }
+
+    private AuthorDto createSpecialAuthor(String name) {
+        AuthorRequest aReq1 = new AuthorRequest();
+        aReq1.setName(name);
+        return create(aReq1);
+    }
+
+    public void createTestDB() {
+        clearAuthorRepo();
+
+        createSpecialAuthor("Laila Mcmahon");
+        createSpecialAuthor("Kaleb Proctor");
+        createSpecialAuthor("Livia Moody");
+        createSpecialAuthor("Corey Terry");
+        createSpecialAuthor("Charlie West");
+        createSpecialAuthor("Cleo Rush");
+        createSpecialAuthor("Kamran Wolf");
+        createSpecialAuthor("Elissa Swee");
+        createSpecialAuthor("Alys Hines");
+        createSpecialAuthor("Tiffany Ber");
+        createSpecialAuthor("Lowri Ortiz");
+        createSpecialAuthor("Kelsey Gal");
+        createSpecialAuthor("Darren Salas");
+        createSpecialAuthor("Jeremy Eaton");
+        createSpecialAuthor("Simon Summers");
+        createSpecialAuthor("Julian Gibbons");
+        createSpecialAuthor("Nellie Poole");
+        createSpecialAuthor("Hazel Murray");
+        createSpecialAuthor("Cohen Holmes");
+        createSpecialAuthor("Serena Buch");
+    }
 }

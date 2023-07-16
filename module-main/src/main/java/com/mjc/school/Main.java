@@ -1,9 +1,9 @@
 package com.mjc.school;
 
+import com.mjc.school.controller.AuthorControllerRequest;
+import com.mjc.school.controller.NewsControllerRequest;
 import com.mjc.school.controller.implementation.AuthorController;
 import com.mjc.school.controller.implementation.NewsController;
-import com.mjc.school.service.requests.AuthorRequest;
-import com.mjc.school.service.requests.NewsRequest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.HashMap;
@@ -17,9 +17,10 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
         NewsController newsController = context.getBean("newsControllerBean", NewsController.class);
         AuthorController authorController = context.getBean("authorControllerBean", AuthorController.class);
-        Helper helper = context.getBean("helperBean", Helper.class);
-        helper.createTestDB();
         context.close();
+
+        authorController.createTestDataBase();
+        newsController.createTestDataBase();
 
         boolean exit = false;
         Scanner reader = new Scanner(System.in);
@@ -105,16 +106,16 @@ public class Main {
         return "";
     }
 
-    private static NewsRequest newsRequest(String title, String content, Long id) {
-        NewsRequest req = new NewsRequest();
+    private static NewsControllerRequest newsRequest(String title, String content, Long id) {
+        NewsControllerRequest req = new NewsControllerRequest();
         req.setTitle(title);
         req.setContent(content);
         req.setAuthorId(id);
         return req;
     }
 
-    private static AuthorRequest authorRequest(String name) {
-        AuthorRequest req = new AuthorRequest();
+    private static AuthorControllerRequest authorRequest(String name) {
+        AuthorControllerRequest req = new AuthorControllerRequest();
         req.setName(name);
         return req;
     }

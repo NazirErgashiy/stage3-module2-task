@@ -89,4 +89,41 @@ public class NewsService implements BaseService<NewsRequest, NewsDto, Long> {
         }
         saveAll(allNews);
     }
+
+    private void clearNewsRepo() {
+        saveAll(new ArrayList<>());
+    }
+
+    public void createTestDB() {
+        clearNewsRepo();
+
+        createSpecialNews("Lord Of Dawn", "Now is the winter of our discontent", 1L);
+        createSpecialNews("Heir Of The Ancients", "Made glorious summer by this sun of York;", 1L);
+        createSpecialNews("Pirates Of The Ancestors", "And all the clouds that lour'd upon our house", 3L);
+        createSpecialNews("Rebels Of Earth", "In the deep bosom of the ocean buried.", 4L);
+        createSpecialNews("Kings And Mice", "Now are our brows bound with victorious wreaths;", 5L);
+        createSpecialNews("Gods And Priests", "Our bruised arms hung up for monuments;", 6L);
+        createSpecialNews("Goal Of The Lost Ones", "Our stern alarums changed to merry meetings,", 7L);
+        createSpecialNews("End Of Nightmares", "Our dreadful marches to delightful measures.", 8L);
+        createSpecialNews("Begging In The Future", "Grim-visaged war hath smooth'd his wrinkled front;", 9L);
+        createSpecialNews("Flying Into The North", "I, that am curtail'd of this fair proportion,", 10L);
+        createSpecialNews("Hero Of Dawn", "Creator Of Tomorrow", 11L);
+        createSpecialNews("Human With Honor", "Priestess Without Desire", 12L);
+        createSpecialNews("Strangers Of The Night", "Giants Of The Light", 13L);
+        createSpecialNews("Officers With Vigor", "Boys Without Courage", 14L);
+        createSpecialNews("Serpents And Companions", "Lords And Knights", 15L);
+        createSpecialNews("Horses And Foreigners", "Wolves And Aliens", 16L);
+        createSpecialNews("Cause Of Tomorrow", "Planet Of Water", 17L);
+        createSpecialNews("Destiny Without Time", "Success Of The Void", 18L);
+        createSpecialNews("Healing My Nightmares", "Clinging To The Future", 19L);
+        createSpecialNews("Choking In Eternity", "Hurt By Nightmares", 20L);
+    }
+
+    private NewsDto createSpecialNews(String title, String content, Long authorId) {
+        NewsRequest request1 = new NewsRequest();
+        request1.setTitle(title);
+        request1.setContent(content);
+        request1.setAuthorId(authorId);
+        return create(request1);
+    }
 }

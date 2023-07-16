@@ -19,9 +19,4 @@ public class SpringConfig {
     public NewsController newsControllerBean() {
         return new NewsController();
     }
-
-    @Bean
-    public Helper helperBean() {
-        return new Helper();
-    }
 }
